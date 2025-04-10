@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shifra - API Integration</title>
+    <link rel="shortcut icon" href="1.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="1.png" alt="logo" id="logo">
+                <h1>I'm <span id="name">Shifra</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="index.html#aicoach" class="nav-item"><i class="fas fa-robot"></i> AI Coach</a></li>
+                    <li><a href="#" class="nav-item active"><i class="fas fa-code"></i> API</a></li>
+                </ul>
+            </nav>
+            <div class="progress-section">
+                <h3>YOUR PROGRESS</h3>
+                <div class="progress-item">
+                    <p>Reading Speed</p>
+                    <p id="readingSpeed">0 WPM</p>
+                    <p class="goal">Goal: 500 WPM</p>
+                </div>
+                <div class="progress-item">
+                    <p>Fluency</p>
+                    <div class="progress-bar">
+                        <div id="fluencyBar" style="width: 0%;"></div>
+                    </div>
+                    <p id="fluencyScore">0%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Toggle Button for Sidebar -->
+            <button id="sidebarToggle" class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <header class="main-header">
+                <h2>DeepSeek R1 API</h2>
+                <div class="user-info">
+                    <button class="notification"><i class="fas fa-bell"></i></button>
+                    <span>User</span>
+                    <div class="avatar">U</div>
+                </div>
+            </header>
+
+            <div class="reading-container">
+                <div class="reading-header">
+                    <h3>API Tester</h3>
+                    <button id="testApi">Test API</button>
+                </div>
+                <textarea id="apiInput" placeholder="Enter your prompt for DeepSeek R1..."></textarea>
+                <div class="analysis">
+                    <h4>API Response</h4>
+                    <p id="apiResponse">Click "Test API" to see the response from DeepSeek R1</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="api.js"></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shifra - AI Reading Coach</title>
+    <link rel="shortcut icon" href="1.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="1.png" alt="logo" id="logo">
+                <h1>I'm <span id="name">Shifra</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-item active" data-view="dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#" class="nav-item" data-view="aicoach"><i class="fas fa-robot"></i> AI Coach</a></li>
+                    <li><a href="#" class="nav-item" data-view="training"><i class="fas fa-dumbbell"></i> Training</a></li>
+                    <li><a href="#" class="nav-item" data-view="library"><i class="fas fa-book"></i> My Library</a></li>
+                    <li><a href="#" class="nav-item" data-view="statistics"><i class="fas fa-chart-bar"></i> Statistics</a></li>
+                </ul>
+            </nav>
+            <div class="progress-section">
+                <h3>YOUR PROGRESS</h3>
+                <div class="progress-item">
+                    <p>Reading Speed</p>
+                    <p id="readingSpeed">0 WPM</p>
+                    <p class="goal">Goal: 500 WPM</p>
+                </div>
+                <div class="progress-item">
+                    <p>Fluency</p>
+                    <div class="progress-bar">
+                        <div id="fluencyBar" style="width: 0%;"></div>
+                    </div>
+                    <p id="fluencyScore">0%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Toggle Button for Sidebar -->
+            <button id="sidebarToggle" class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Dashboard View -->
+            <div id="dashboard-view" class="view active">
+                <header class="main-header">
+                    <h2>AI Reading Coach</h2>
+                    <div class="user-info">
+                        <button class="notification"><i class="fas fa-bell"></i></button>
+                        <span>User</span>
+                        <div class="avatar">U</div>
+                    </div>
+                </header>
+                <div class="reading-container">
+                    <div class="reading-header">
+                        <h3>Reading Practice</h3>
+                        <button id="suggestText">Suggest Text</button>
+                    </div>
+                    <textarea id="readingText" placeholder="Enter text or use suggested text..."></textarea>
+                    <div class="controls">
+                        <button id="btn" class="record-btn">
+                            <i class="fas fa-microphone"></i>
+                            <span id="content">Record Reading</span>
+                        </button>
+                        <img src="voice.gif" alt="voice" id="voice" class="voice-indicator">
+                    </div>
+                    <div class="analysis">
+                        <h4>Analysis</h4>
+                        <p>Fluency: <span id="analysisFluency">-</span></p>
+                        <p>Pronunciation Issues: <span id="pronunciationErrors">-</span></p>
+                        <p>Progress: <span id="progressTrack">-</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Coach View -->
+            <div id="aicoach-view" class="view">
+                <header class="main-header">
+                    <h2>AI Coach Chat</h2>
+                    <div class="user-info">
+                        <button class="notification"><i class="fas fa-bell"></i></button>
+                        <span>User</span>
+                        <div class="avatar">U</div>
+                    </div>
+                </header>
+                <div class="chat-container">
+                    <div class="ai-chat-box">
+                        <img src="1.png" alt="AI" id="aiImage">
+                        <div class="ai-chat-area">
+                            Hello! How can I assist you today?
+                        </div>
+                    </div>
+                </div>
+                <div class="prompt-area">
+                    <input type="text" id="prompt" placeholder="Ask Shifra anything...">
+                    <button id="image" class="chat-btn"><i class="fas fa-image"></i><input type="file" accept="image/*" hidden></button>
+                    <button id="submit" class="chat-btn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+            <!-- Training View -->
+            <div id="training-view" class="view">
+                <header class="main-header">
+                    <h2>Training Courses</h2>
+                    <div class="user-info">
+                        <button class="notification"><i class="fas fa-bell"></i></button>
+                        <span>User</span>
+                        <div class="avatar">U</div>
+                    </div>
+                </header>
+                <div class="training-container">
+                    <div class="training-courses">
+                        <div class="course-card">
+                            <h3>Beginner Sentences</h3>
+                            <p>Practice with simple sentences to build your foundation</p>
+                            <button class="start-course" data-text="The quick brown fox jumps over the lazy dog.">Start Practice</button>
+                        </div>
+                        <div class="course-card">
+                            <h3>Common Phrases</h3>
+                            <p>Master frequently used English phrases</p>
+                            <button class="start-course" data-text="How are you today? Thank you for helping me.">Start Practice</button>
+                        </div>
+                        <div class="course-card">
+                            <h3>Business English</h3>
+                            <p>Practice professional communication</p>
+                            <button class="start-course" data-text="Please schedule a meeting for next week.">Start Practice</button>
+                        </div>
+                        <div class="course-card">
+                            <h3>Tongue Twisters</h3>
+                            <p>Challenge your pronunciation skills</p>
+                            <button class="start-course" data-text="She sells seashells by the seashore.">Start Practice</button>
+                        </div>
+                    </div>
+                    <div class="reading-container" id="training-reading-container" style="display: none;">
+                        <div class="reading-header">
+                            <h3>Training Practice</h3>
+                            <button id="backToCourses">Back to Courses</button>
+                        </div>
+                        <textarea id="trainingText" placeholder="Practice text will appear here..."></textarea>
+                        <div class="controls">
+                            <button id="trainingBtn" class="record-btn">
+                                <i class="fas fa-microphone"></i>
+                                <span id="trainingContent">Record Reading</span>
+                            </button>
+                            <img src="voice.gif" alt="voice" id="trainingVoice" class="voice-indicator">
+                        </div>
+                        <div class="analysis">
+                            <h4>Analysis</h4>
+                            <p>Fluency: <span id="trainingFluency">-</span></p>
+                            <p>Pronunciation Issues: <span id="trainingPronunciationErrors">-</span></p>
+                            <p>Progress: <span id="trainingProgress">-</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Library View -->
+            <div id="library-view" class="view">
+                <header class="main-header">
+                    <h2>My Library</h2>
+                    <div class="user-info">
+                        <button class="notification"><i class="fas fa-bell"></i></button>
+                        <span>User</span>
+                        <div class="avatar">U</div>
+                    </div>
+                </header>
+                <div class="stats-container">
+                    <h3>Your Reading Collection</h3>
+                    <p>Coming soon! Add your favorite texts here.</p>
+                </div>
+            </div>
+
+            <!-- Statistics View -->
+            <div id="statistics-view" class="view">
+                <header class="main-header">
+                    <h2>Your Progress Statistics</h2>
+                    <div class="user-info">
+                        <button class="notification"><i class="fas fa-bell"></i></button>
+                        <span>User</span>
+                        <div class="avatar">U</div>
+                    </div>
+                </header>
+                <div class="stats-container">
+                    <h3>Your Reading Journey</h3>
+                    <div id="stats-summary"></div>
+                    <div id="stats-history"></div>
+                    <div id="stats-tips"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
